@@ -16,28 +16,22 @@ class DailySwappingNodesInALinkedListTest {
     @ParameterizedTest
     @MethodSource("args")
     public void replacesKElementFromBeginningWithKElementFromEnd(ListNode input, int k, ListNode expected) {
-        System.out.println("Input: " + toString(input));
+        System.out.println("Input:    " + toString(input));
         var output = new DailySwappingNodesInALinkedList().swapNodes(input, k);
 
-        System.out.println("Output: " + toString(output));
         System.out.println("Expected: " + toString(expected));
-//        assertEquals(ToList(expected), ToList(output));
-//        while (output.next != null) {
-//            System.out.println("Expected: ")
-//            assertEquals(expected.val, output.val);
-//            output = output.next;
-//            expected = expected.next;
-//        }
-//
-//        assertNull(output.next);
-//        assertNull(expected.next);
+        System.out.println("Output:   " + toString(output));
+        assertEquals(ToList(expected), ToList(output));
     }
 
     public static Stream<Arguments> args() {
         return Stream.of(
+            Arguments.of(ToListNode(new int[] {1, 2}), 2, ToListNode(new int[] {2, 1})),
             Arguments.of(ToListNode(new int[] {1, 2, 3, 4, 5, 6, 7}), 2, ToListNode(new int[] {1, 6, 3, 4, 5, 2, 7})),
             Arguments.of(ToListNode(new int[] {1, 2, 3, 4, 5, 6, 7}), 1, ToListNode(new int[] {7, 2, 3, 4, 5, 6, 1})),
-            Arguments.of(ToListNode(new int[] {1, 2, 3, 4, 5, 6, 7}), 5, ToListNode(new int[] {1, 2, 5, 4, 3, 6, 7}))
+            Arguments.of(ToListNode(new int[] {1, 2, 3, 4, 5, 6, 7}), 5, ToListNode(new int[] {1, 2, 5, 4, 3, 6, 7})),
+            Arguments.of(ToListNode(new int[] {7,9,6,6,7,8,3,0,9,5}), 5, ToListNode(new int[] {7,9,6,6,8,7,3,0,9,5})),
+            Arguments.of(ToListNode(new int[] {7,9,6,6,7,8,3,0,9,5}), 6, ToListNode(new int[] {7,9,6,6,8,7,3,0,9,5}))
         );
     }
 
